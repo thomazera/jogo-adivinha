@@ -1,0 +1,121 @@
+<meta charset="utf8">
+
+<script>
+    // Criando o titulo e instruções na pagina
+    document.write("<h1>Bem-vindo ao Tentativa e Erro </h1>");
+    document.write("<br><br>");
+    document.write("Instruções rápidas, digite um numero de 1 a 10 e clique no botão 'Compare com o meu segredo'.");
+    document.write("<br><br>");
+
+    // Comentários adicionais:
+
+    // A tag input permite a criação de box na pagina html
+
+    // <input/>
+
+    // A tag button permite a criação de um botão na pagina html
+    // <button>  
+    // </button>
+
+</script>
+
+<input/>
+
+<button>   
+Compare com o meu segredo!
+</button>
+
+<script>
+    // Criando uma função para gerar numeros aleatorio na casa de 0 a 10
+    function numberRandom() {
+
+        return Math.round(Math.random() * 10);
+
+
+    }
+
+    // Criando uma função para preencher a array aleatoriamente com a função de gerar numeros aleatorios
+    function listaNumbers (quantidade)  {
+
+        // Cria-se a var array vazia e criamos uma contagem de quanto numeros incluimos
+        var lista = [];
+
+        var numero = 1;
+
+        // A condição de repetição sera ativada até que a quantidade determinada em listaNumbers seja igual ou menor que a var numero
+        while (numero <= quantidade) {
+            //  Então crio a repetição informando que para cada numero informado na quantidade, o codigo inclua um numero random na array
+            var sortido = numberRandom();
+            var achou = false; // crio uma condição para evitar numero random repitido pt1.
+
+                if(sortido !== 0) {
+
+                    for(var posicao = 0; posicao < lista.length; posicao++) {
+
+                        if(lista[posicao] == sortido) {
+                            achou = true;
+                            break;
+                        }
+                    }
+
+                    if(achou == false)  {
+                        lista.push(sortido);
+                        numero++;
+                    }
+                }   
+
+
+
+        }  
+        
+        return lista
+    }
+
+
+
+    var lista = listaNumbers(3);
+
+    console.log(lista);
+
+    var input = document.querySelector("input");
+    input.focus();
+
+    function verifica () {
+
+        var achou = false;
+
+        for(var posicao = 0; posicao < lista.length; posicao++) {
+
+            if(input.value == lista[posicao]) {
+
+                alert("Você acertou!");
+                achou = true;
+                location.reload();
+                break;
+            }
+        }
+
+        if (achou == false) {
+
+            alert("Você errou!");
+
+        }
+
+        input.value = "";
+        input.focus();
+    }
+
+    var button = document.querySelector("button");
+
+    button.onclick = verifica;
+
+    
+    // Finalizando com uma mensagem
+
+    document.write("<br><br>");
+    document.write("<br><br>");
+    document.write("Obrigado por jogar!");
+   
+
+
+</script>
